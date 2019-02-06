@@ -1,7 +1,7 @@
 ## <a name="start"></a>Getting Started
 ```sh
-git clone https://github.com/ruanjue/wtdbg2
-cd wtdbg2 && make
+git clone https://github.com/takaho/wtbg2-mac
+cd wtbg2-mac && make
 # assemble long reads
 ./wtdbg2 -x rs -g 4.6m -i reads.fa.gz -t16 -fo prefix
 # derive consensus
@@ -17,6 +17,11 @@ bwa mem -t 16 prefix.ctg.fa sr.1.fa sr.2.fa | samtools view -Sb - >sr.bam
 samtools sort sr.bam sr.srt
 samtools view sr.srt.bam | ./wtpoa-cns -t 16 -x sam-sr -d prefix.ctg.fa -i - -fo prefix.ctg.3rd.fa
 ```
+## NOTE
+This is modified version of Wtdbg2 developed by Ruan and Li.
+Since the original codes could not be built in Mac environment, some codes were changed to pass through build process in Mac.
+The modification requires GCC-8 installed via Homebrew.
+The absolute path of GCC is hard-coded in Makefile, we should change the line to adapt our own environments.
 
 ## <a name="intro"></a>Introduction
 
