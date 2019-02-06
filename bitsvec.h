@@ -26,6 +26,15 @@
 #include <stdlib.h>
 #include "mem_share.h"
 
+#if defined(__BYTE_ORDER) && __BYTE_ORDER == __LITTLE_ENDIAN || \
+    defined(__LITTLE_ENDIAN__) ||                               \
+    defined(__ARMEL__) ||                                       \
+    defined(__THUMBEL__) ||                                     \
+    defined(__AARCH64EL__) ||                                   \
+    defined(_MIPSEL) || defined(__MIPSEL) || defined(__MIPSEL__)
+#define __BYTE_ORDER 1234
+#endif
+
 /* Useful functions when n_bit > 8 */
 
 static inline void u8byte2bits(uint64_t val, uint8_t *dat, uint64_t offset, uint8_t size){

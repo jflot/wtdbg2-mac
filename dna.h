@@ -396,6 +396,15 @@ static inline int cmpgt_seqbits(u8i *bits, u8i off1, u8i off2, u4i _len){
 	return 0;
 }
 
+#if defined(__BYTE_ORDER) && __BYTE_ORDER == __LITTLE_ENDIAN || \
+    defined(__LITTLE_ENDIAN__) ||                               \
+    defined(__ARMEL__) ||                                       \
+    defined(__THUMBEL__) ||                                     \
+    defined(__AARCH64EL__) ||                                   \
+    defined(_MIPSEL) || defined(__MIPSEL) || defined(__MIPSEL__)
+#define __BYTE_ORDER 1234
+#endif
+
 #if __BYTE_ORDER == 1234
 static const u4i spare_2bits_table[256] = {
          0,  16777216,  33554432,  50331648,     65536,  16842752,  33619968,  50397184,
