@@ -284,12 +284,12 @@ static inline int replace_char(char *str, char src, char dst, int max){
 }
 
 static inline int file_exists(const char *filename){
-	char *realpath;
+	char *realpath_;
 	struct stat s;
-	realpath = canonicalize_file_name(filename);
-	if(realpath == NULL) return 0;
-	if(stat(realpath, &s) == -1){ free(realpath); return 0; }
-	free(realpath);
+	realpath_ = realpath(filename, NULL);
+	if(realpath_ == NULL) return 0;
+	if(stat(realpath_, &s) == -1){ free(realpath_); return 0; }
+	free(realpath_);
 	switch(s.st_mode & S_IFMT){
 		//case S_IFBLK:
 		//case S_IFCHR:
@@ -303,12 +303,12 @@ static inline int file_exists(const char *filename){
 }
 
 static inline int dir_exists(const char *filename){
-	char *realpath;
+	char *realpath_;
 	struct stat s;
-	realpath = canonicalize_file_name(filename);
-	if(realpath == NULL) return 0;
-	if(stat(realpath, &s) == -1){ free(realpath); return 0; }
-	free(realpath);
+	realpath_ = realpath(filename, NULL);
+	if(realpath_ == NULL) return 0;
+	if(stat(realpath_, &s) == -1){ free(realpath_); return 0; }
+	free(realpath_);
 	switch(s.st_mode & S_IFMT){
 		//case S_IFBLK:
 		//case S_IFCHR:
@@ -379,13 +379,13 @@ static inline char* absolute_filename(char *filename){
 }
 
 static inline int exists_file(char *dir, char *filename){
-	char *realpath, *fullname;
+	char *realpath_, *fullname;
 	int ret;
-	realpath = absolute_filename(dir? dir : ".");
-	if(!dir_exists(realpath)){ free(realpath); return 0; }
-	fullname = malloc(strlen(realpath) + strlen(filename) + 3);
-	sprintf(fullname, "%s/%s", realpath, filename);
-	free(realpath);
+	realpath_ = absolute_filename(dir? dir : ".");
+	if(!dir_exists(realpath_)){ free(realpath_); return 0; }
+	fullname = malloc(strlen(realpath_) + strlen(filename) + 3);
+	sprintf(fullname, "%s/%s", realpath_, filename);
+	free(realpath_);
 	ret = file_exists(fullname);
 	free(fullname);
 	return ret;

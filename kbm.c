@@ -261,7 +261,8 @@ int kbm_main(int argc, char **argv){
 	}
 	if(interactive) buffered_read = 0;
 	if(ncpu <= 0){
-		ncpu = _proc_deamon->ncpu;
+		// ncpu = _proc_deamon->ncpu;
+        ncpu = _sig_proc_deamon->ncpu;
 		if(ncpu == 0) ncpu = 1; // failed to get number of cores
 	}
 	if(KBM_LOG > 0){

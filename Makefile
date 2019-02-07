@@ -1,6 +1,7 @@
 VERSION=2.3
 
 CC  := gcc
+CC := /usr/local/Cellar/gcc/8.2.0.reinstall/bin/gcc-8
 BIN := /usr/local/bin
 
 ifeq (0, ${MAKELEVEL})
@@ -13,7 +14,7 @@ else
 CFLAGS=-g3 -W -Wall -Wno-unused-but-set-variable -O4 -DTIMESTAMP="$(TIMESTAMP)" -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -mpopcnt -msse4.2
 endif
 
-GLIBS=-lm -lrt -lpthread -lz
+GLIBS=-lm -lpthread -lz
 GENERIC_SRC=mem_share.h chararray.h sort.h list.h pgzf.h  sort.h list.h dna.h thread.h filereader.h filewriter.h bitvec.h bit2vec.h bitsvec.h hashset.h
 
 PROGS=kbm2 wtdbg2 wtdbg-cns wtpoa-cns pgzf
