@@ -1,7 +1,6 @@
 VERSION=2.3
 
-CC  := gcc
-CC := /usr/local/Cellar/gcc/8.2.0.reinstall/bin/gcc-8
+CC := /usr/local/gcc*/bin/gcc
 BIN := /usr/local/bin
 
 ifeq (0, ${MAKELEVEL})
